@@ -82,7 +82,8 @@
         }
         this.users.unshift(newUser)
         this.activeUser = 0
-        this.$refs.myForm.reset()
+        this.name = ''
+        this.avatar = ''
       },
     },
   }
@@ -105,6 +106,7 @@ button {
   background-color: #4CAF50;
   border: none;
   color: white;
+  margin: 6px;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
