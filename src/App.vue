@@ -1,41 +1,22 @@
 <template>
 
   <div class="container">
-    <div class="slider">
-      <p class="slider__username"> {{ selectUser.name }} </p>
-      <img
-          :src="selectUser.avatar"
-          class="slider__avatar" alt="">
-      <div class="slider__nav">
-        <button
-            @click="previousUser"
-            class="slider__back" >na zad</button>
-        <button
-            @click="nextUser"
-            class="slider__next" >vpe red</button>
-      </div>
-    </div>
-
-    <form ref="myForm" @submit.prevent>
-      <h2>Add new kitty</h2>
-      <input
-          v-bind:value="name"
-          @input="name = $event.target.value"
-          class="input" type="text" placeholder="Name">
-      <input
-          v-bind:value="avatar"
-          @input="avatar = $event.target.value"
-          class="input" type="text" placeholder="Photo's URL">
-      <button
-          @click="addNewUser" class="btn"
-      >Submit</button>
-    </form>
+    <Slider
+        :users="users"
+        :activeUser="counter"
+    ></Slider>
+    <AddUsersForm @create="addNewUser"></AddUsersForm>
   </div>
 
 </template>
 
 <script>
+import Slider from "@/Components/Slider";
+import AddUsersForm from "@/Components/AddUsersForm";
   export default {
+    components: {
+      Slider, AddUsersForm
+    },
     data() {
       return {
         users: [
@@ -52,38 +33,13 @@
             avatar: 'https://images.unsplash.com/photo-1586289883499-f11d28aaf52f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8OHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
           },
         ],
-        activeUser: 0,
-        name: '',
-        avatar: '',
+        counter: 0
       }
     },
-    computed: {
-      selectUser() {
-        return this.users.find((user, index) => {
-          return index === this.activeUser
-        })
-      },
-    },
     methods: {
-      nextUser() {
-        if (this.activeUser !== (this.users.length - 1)) {
-          this.activeUser += 1
-        }
-      },
-      previousUser() {
-        if (this.activeUser !== 0) {
-          this.activeUser -= 1
-        }
-      },
-      addNewUser() {
-        const newUser = {
-          name: this.name,
-          avatar: this.avatar,
-        }
+      addNewUser(newUser, activeUser) {
         this.users.unshift(newUser)
-        this.activeUser = 0
-        this.name = ''
-        this.avatar = ''
+        this.counter = activeUser
       },
     },
   }
@@ -95,27 +51,4 @@
   padding: 40px;
   justify-content: space-around;
 }
-.slider {
-  display: flex;
-  flex-direction: column;
-}
-.slider__username {
-  font-size: 32px;
-}
-button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  margin: 6px;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-
-.slider__nav {
-  margin-top: 40px;
-}
-
 </style>
