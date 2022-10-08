@@ -23,18 +23,15 @@ export default {
         name: '',
         avatar: '',
       },
-      activeUser: 0
     }
   },
   methods: {
     addNewUser() {
-      this.$emit('create', this.newUser, this.activeUser)
+      this.$emit('create', this.newUser)
       this.newUser = {
         name: '',
         avatar: '',
       }
-      this.name = ''
-      this.avatar = ''
     },
   },
 }

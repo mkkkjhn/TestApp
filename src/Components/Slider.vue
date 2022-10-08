@@ -17,28 +17,8 @@
 
 <script>
 export default {
-  props: {
-    activeUser: {
-      required: true,
-      type: Number
-    },
-    users: {
-      type: Array,
-      required: true
-    }
-  },
-  data() {
-    return {
-      activeUser: 0,
-    }
-  },
-  computed: {
-    selectUser() {
-      return this.users.find((user, index) => {
-        return index === this.activeUser
-      })
-    },
-  },
+  data() {},
+  computed: {},
   methods: {
     nextUser() {
       if (this.activeUser !== (this.users.length - 1)) {
