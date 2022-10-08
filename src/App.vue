@@ -3,7 +3,7 @@
   <div class="container">
     <Slider
         :users="users"
-        :activeUser="counter"
+        :user-counter="userCounter"
     ></Slider>
     <AddUsersForm @create="addNewUser"></AddUsersForm>
   </div>
@@ -33,13 +33,13 @@ import AddUsersForm from "@/Components/AddUsersForm";
             avatar: 'https://images.unsplash.com/photo-1586289883499-f11d28aaf52f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8OHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'
           },
         ],
-        counter: 0
+        userCounter: null
       }
     },
     methods: {
-      addNewUser(newUser, activeUser) {
+      addNewUser(newUser, userCounter) {
         this.users.unshift(newUser)
-        this.counter = activeUser
+        this.userCounter = userCounter
       },
     },
   }

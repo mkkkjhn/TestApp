@@ -18,7 +18,7 @@
 <script>
 export default {
   props: {
-    activeUser: {
+    userCounter: {
       required: true,
       type: Number
     },
@@ -30,6 +30,11 @@ export default {
   data() {
     return {
       activeUser: 0,
+    }
+  },
+  watch: {
+    userCounter(newValue, oldValue) {
+      this.activeUser = 0
     }
   },
   computed: {
