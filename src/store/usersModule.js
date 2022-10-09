@@ -17,14 +17,14 @@ export const usersModule = {
         activeUser: 0,
     }),
     getters: {
-        selectUser(state) {
+        SELECT_USER(state) {
             return state.users.find((user, index) => {
                 return index === state.activeUser
             })
         },
     },
     mutations: {
-        setUsers(state, users) {
+        SET_USERS(state, users) {
             state.users = users;
         },
         setActiveUser(state, activeUser) {
