@@ -1,10 +1,8 @@
 <template>
 
   <div class="container">
-    <slider
-        :users="users"
-    ></slider>
-    <add-users-form @create="addNewUser"></add-users-form>
+    <slider></slider>
+    <add-users-form></add-users-form>
   </div>
 
 </template>
@@ -15,15 +13,6 @@ import AddUsersForm from "@/Components/AddUsersForm";
   export default {
     components: {
       Slider, AddUsersForm
-    },
-    data() {
-      return {
-      }
-    },
-    methods: {
-      addNewUser(newUser) {
-        this.users.unshift(newUser)
-      },
     },
   }
 </script>

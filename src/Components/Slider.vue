@@ -1,12 +1,12 @@
 <template>
   <div class="slider">
-    <p class="slider__username"> {{ $store.state.activeUser }} </p>
+    <p class="slider__username"> {{ selectUser.name }} </p>
     <img
         :src="selectUser.avatar"
         class="slider__avatar" alt="">
     <div class="slider__nav">
       <button
-          @click="previousUser"
+          @click="prevUser"
           class="slider__back" >na zad</button>
       <button
           @click="nextUser"
@@ -16,26 +16,22 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import {mapGetters, mapMutations, mapActions} from "vuex";
 
 export default {
   data() {},
   computed: {
     ...mapGetters({
-      activeUser: 'userModule/nazvanie gettera'
+      selectUser: 'SELECT_USER'
     })
   },
   methods: {
-    nextUser() {
-      if (this.activeUser !== (this.users.length - 1)) {
-        this.activeUser += 1
-      }
-    },
-    previousUser() {
-      if (this.activeUser !== 0) {
-        this.activeUser -= 1
-      }
-    },
+    ...mapMutations([
+    ]),
+    ...mapActions({
+      prevUser: "PREV_USER",
+      nextUser: "NEXT_USER"
+    })
   }
 }
 </script>

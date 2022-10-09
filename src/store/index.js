@@ -1,8 +1,8 @@
 import {createStore} from "vuex";
-import {usersModule} from "@/store/usersModule";
+import {sliderModule} from "@/store/sliderModule";
 
 export default createStore({
     modules: {
-        usersModule
+        usersModule: sliderModule
     }
 })

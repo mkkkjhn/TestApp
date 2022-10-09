@@ -2,12 +2,10 @@
   <form ref="myForm" @submit.prevent>
     <h2>Add new kitty</h2>
     <input
-        v-bind:value="newUser.name"
-        @input="newUser.name = $event.target.value"
+        v-model="saveUserName"
         class="input" type="text" placeholder="Name">
     <input
-        v-bind:value="newUser.avatar"
-        @input="newUser.avatar = $event.target.value"
+        v-model="saveUserAvatar"
         class="input" type="text" placeholder="Photo's URL">
     <button
         @click="addNewUser" class="btn"
@@ -16,6 +14,8 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   data() {
     return {
@@ -25,15 +25,37 @@ export default {
       },
     }
   },
-  methods: {
-    addNewUser() {
-      this.$emit('create', this.newUser)
-      this.newUser = {
-        name: '',
-        avatar: '',
+  computed: {
+    saveUserName: {
+      get: function () {
+        return this.name
+      },
+      set: function (value) {
+        this.name = value
+        this.setUserName()
+      }
+    },
+    saveUserAvatar: {
+      get: function () {
+        return this.avatar
+      },
+      set: function (value) {
+        this.avatar = value
+        this.setUserAvatar()
       }
     },
   },
+  methods: {
+    setUserName() {
+      this.$store.dispatch('SAVE_NEW_USER_NAME', this.name)
+    },
+    setUserAvatar() {
+      this.$store.dispatch('SAVE_NEW_USER_AVATAR', this.avatar)
+    },
+    ...mapActions({
+      addNewUser: 'ADD_NEW_USER'
+    })
+  }
 }
 </script>
 
