@@ -1,6 +1,6 @@
 <template>
   <div class="slider">
-    <p class="slider__username"> {{ selectUser.name }} </p>
+    <p class="slider__username"> {{ $store.state.activeUser }} </p>
     <img
         :src="selectUser.avatar"
         class="slider__avatar" alt="">
@@ -16,9 +16,15 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   data() {},
-  computed: {},
+  computed: {
+    ...mapGetters({
+      activeUser: 'userModule/nazvanie gettera'
+    })
+  },
   methods: {
     nextUser() {
       if (this.activeUser !== (this.users.length - 1)) {
