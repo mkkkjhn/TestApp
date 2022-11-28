@@ -22,10 +22,6 @@ export default {
       required: true,
       type: Number
     },
-    users: {
-      type: Array,
-      required: true
-    }
   },
   data() {
     return {
@@ -39,14 +35,14 @@ export default {
   },
   computed: {
     selectUser() {
-      return this.users.find((user, index) => {
+      return this.$store.state.users.find((user, index) => {
         return index === this.activeUser
       })
     },
   },
   methods: {
     nextUser() {
-      if (this.activeUser !== (this.users.length - 1)) {
+      if (this.activeUser !== (this.$store.state.users.length - 1)) {
         this.activeUser += 1
       }
     },

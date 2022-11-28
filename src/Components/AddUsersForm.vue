@@ -2,12 +2,10 @@
   <form ref="myForm" @submit.prevent>
     <h2>Add new kitty</h2>
     <input
-        v-bind:value="newUser.name"
-        @input="newUser.name = $event.target.value"
+        v-model="newUser.name"
         class="input" type="text" placeholder="Name">
     <input
-        v-bind:value="newUser.avatar"
-        @input="newUser.avatar = $event.target.value"
+        v-model="newUser.avatar"
         class="input" type="text" placeholder="Photo's URL">
     <button
         @click="addNewUser" class="btn"
@@ -28,12 +26,11 @@ export default {
   },
   methods: {
     addNewUser() {
-      this.$emit('create', this.newUser, this.userCounter)
-      this.newUser = {
-        name: '',
-        avatar: '',
-      }
+      this.$emit('create', this.userCounter)
       this.userCounter = Date
+      this.$store.commit('ADD_NEW_USER', {
+        user: this.newUser
+      })
     },
   },
 }
